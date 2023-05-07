@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/styles/styles.css' %}">
+    <title>Sistema de Gestão</title>
+</head>
+<body>
+    <div class="page-content">
+        <div class="topo">
+            <h1>Livros</h1>
+        </div>
+        <div class="content">
+            <div class="left">
+                <form action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <button type="submit" class="novo">Novo+</button>
+                </form>
+            </div>
+            <div class="mid">
+                <table>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Finalizado</th>
+                        <th>Descricao</th>
+                    </tr>
+                    {% for livro in livros %}
+                    <tr class="even">
+                        <td>{{ livro.nome }}</td>
+                        <td>  
+                            <input type="checkbox" name="{{ livro.finalizado }}" {% if livro.finalizado %}checked{% endif %} disabled>
+                        </td>
+                        <td>{{ livro.descricao }}</td>
+                        <td>
+                            <form action="{% url 'details' livro.id %}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <button type="submit" class="detalhes">Detalhes</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{% url 'editar' livro.id  %}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <button type="submit" class="editar">Editar</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{% url 'deletar' livro.id %}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <button type="submit" class="excluir">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </table>
+            </div>
+            <div class="right"></div>
+        </div>
+    </div>
+</body>
+</html>

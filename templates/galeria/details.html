@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/styles/styles.css' %}">
+    <title>Sistema de Gestão</title>
+</head>
+<body>
+    <div class="page-content">
+        <div class="topo">
+            <h1>Livros</h1>
+        </div>
+        <div class="content">
+            <div class="left">
+            </div>
+            <div class="mid">
+                <table>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Finalizado</th>
+                        <th>Descricao</th>
+                    </tr>
+                    <tr class="even">
+                        <td><a class="list-group-item list-group-item-action">{{livro.nome}}</a></td>
+                        <td><a class="list-group-item list-group-item-action">{{livro.finalizado}}</a></td>
+                        <td><a class="list-group-item list-group-item-action">{{livro.descricao}}</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="right"></div>
+        </div>
+    </div>
+</body>
+</html>
