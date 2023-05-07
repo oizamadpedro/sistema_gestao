@@ -16,7 +16,7 @@ def gestao(request):
     return render(request, 'galeria/gestao.html', context)
 
 def create(request):
-    form = LivroForm
+    form = LivroForm()
     if request.method == 'POST':
         form = LivroForm(request.POST)
         if form.is_valid():
@@ -31,7 +31,7 @@ def editar(request, livro_id):
 
 
     if request.method == 'POST':
-        form = LivroForm(request.POST, request.FILES, instance=livro)
+        form = LivroForm(request.POST, instance=livro)
         if form.is_valid():
             form.save()
             return redirect('/gestao')

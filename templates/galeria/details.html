@@ -25,7 +25,9 @@
                     </tr>
                     <tr class="even">
                         <td><a class="list-group-item list-group-item-action">{{livro.nome}}</a></td>
-                        <td><a class="list-group-item list-group-item-action">{{livro.finalizado}}</a></td>
+                        <td>  
+                            <input type="checkbox" name="{{ livro.finalizado }}" {% if livro.finalizado %}checked{% endif %} disabled>
+                        </td>
                         <td><a class="list-group-item list-group-item-action">{{livro.descricao}}</a></td>
                     </tr>
                 </table>
